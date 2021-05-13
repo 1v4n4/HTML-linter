@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/check_file.rb'
+require_relative '../lib/logic.rb'
+# rubocop: disable Style/MixinUsage
+include Linter
+# rubocop: enable Style/MixinUsage
+
+path = ARGV[0]
+file_validation = FileCheck.new(path)
+
+puts file_validation.error_msg if file_validation.invalid?
+
+puts file_validation.empty_msg if file_validation.empty?
+
+new_check = Check.new(path)
+
