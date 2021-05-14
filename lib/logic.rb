@@ -25,8 +25,6 @@ module Linter
     
     def indentation_two
       arr = @lines.map {|x| x== "\n" ? x = nil : x[/^\s*/].size }  
-      p "ovaj"   
-      p arr
       1.upto(arr.size-2) do |i| 
         next if arr[i] == nil    
           if (arr[i]%2).odd? || arr[i] == 0
