@@ -7,7 +7,7 @@ module Linter
       @file = path
       @lines = IO.readlines(file)
       @trailing = []
-      @indentation = {:by_two => [], :zero => [], :other => []}
+      @indentation = {:by_two => [], :zero => [], :vertical => []}
       @unclosed = []
       @missing_tags = []
       @empty_divs = []
@@ -24,10 +24,12 @@ module Linter
     end
     
     def indentation_two
-      arr = @lines.map {|x| x[/^\s*/].size }
-      
-      1.upto(arr.size-2) do |i|
-        if (arr[i]%2).odd? || arr[i] == 0
+      arr = @lines.map {|x| x== "\n" ? x = nil : x[/^\s*/].size }  
+      p "ovaj"   
+      p arr
+      1.upto(arr.size-2) do |i| 
+        next if arr[i] == nil    
+          if (arr[i]%2).odd? || arr[i] == 0
           @indentation[:by_two].push(i+1)          
         end
       end
@@ -40,17 +42,28 @@ module Linter
     
     def indentation_last
       arr = @lines.map {|x| x[/^\s*/].size }
-      indentation[:zero].push('last') if lines.last != 0
+      indentation[:zero].push('last') if arr.last != 0
     end
     
-    def indentation_vertical #checks only if the indentation of the line is same or different by two as previous/last
-      arr = @lines.map {|x| x[/^\s*/].size }
+    def indentation_vertical  
+      arr = @lines.map {|x| x== "\n" ? x = nil : x[/^\s*/].size }      
       a = []
-      1.upto(arr.size-2) do |i|      
-        a.push(arr[i]-arr[i+1])       
-      end
-      p a
-      a.each_with_index {|x,indx| @indentation[:other].push(indx+2) if ![0,2,-2].include?(x) }
+      1.upto(arr.size-2) do |i|
+        if arr[i].nil?
+          a.push('x')
+        elsif !arr[i].nil? && !arr[i+1].nil?
+          a.push(arr[i]-arr[i+1])
+        elsif !arr[i].nil? && arr[i+1].nil?
+            j=i+1
+            loop do 
+              j+=1 
+              break if !arr[j].nil? or j = arr.size-1 
+            end                        
+            a.push(arr[i]-arr[j])
+            next 
+        end
+      end      
+      a.each_with_index {|x,indx| @indentation[:vertical].push(indx+2) if ![0,2,-2,'x'].include?(x) }          
     end
   
 

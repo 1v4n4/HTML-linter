@@ -30,5 +30,10 @@ describe Linter do
     end
   end
   
-  describe 
+  describe '#indentation_vertical' do
+    it 'checks if the indentation of the line is same or different by two as previous/last' do
+      new_file.indentation_vertical
+      expect(new_file.indentation[:vertical]).not_to be_empty
+    end
+  end
 end

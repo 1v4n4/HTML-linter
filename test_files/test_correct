@@ -1,109 +1,29 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+    <title>Wrong identation and trailing whites</title>
   <link rel="stylesheet" href="css/reset.css">
-  </head>
+</head>
 
 <body>
   <header>
     <div>
-      <img src="imgs/hotel.svg" alt="hotel-icono" class="logo">
+      <img src="imgs/hotel.svg" alt="" class="empty_alt">
     </div>
   </header>
   <main>
-    <article>
-      <h1 class="filter-h">Filter by location, price for one night, review score, stars, free wifi, and beach access
-      </h1>
-      <form>
-        <fieldset>
-          <label for="hotel-name" class="filter-lbl">HOTEL'S NAME</label>
-          <input type="text" class="filters-inp" name="hotel-name" id="hotel-name">
-        </fieldset>
-        <fieldset>
-          <label for="location" class="filter-lbl">LOCATION</label>
-          <select id="location" name="location" class="filter-slct">
-            <option label=" "> </option>
-            <option>Ulcinj</option>
-            <option>Kotor</option>
-            <option>Budva</option>
-            <option>Tivat</option>
-            <option>Herceg Novi</option>
-            <option>Murino</option>
-            <option>Rozaje</option>
-            <option>Velje Duboko</option>
-          </select>
-        </fieldset>
+    <h1>Heading</h1>
 
-        <fieldset>
-          <label for="price" class="filter-lbl">PRICE</label>
-          <select id="price" name="price" class="filter-slct">
-            <option label=" "> </option>
-            <option>Up to 50€</option>
-            <option>50€ to 100€</option>
-            <option>100€ to 200€</option>
-            <option>200€+</option>
-          </select>
-        </fieldset>
-
-        <fieldset>
-          <div class="fake-btn">
-            <a href="page3.html" class="lnostyle text-light fake-btn-lbl">Search</a>
-          </div>
-        </fieldset>
-        <fieldset>
-          <button type="reset" class="reset-btn text-light">Clear filters</button>
-        </fieldset>
-      </form>
-    </article>
-    <article class="results">
-      <h1 class="filter-h">Search results: Found 4 hotels</h1>
-      <section class="card-result-div">
-        <div class="results-card mt-3">
-          <div class="bg-img">
-            <img src="imgs/hotel1.svg" class="bg-svg" alt="hotel-logo">
-          </div>
-          <div class="results-absolute">
-            <a href="page3.html" class="result-link">
-              <h2 class="results-h"> Azul Beach Resort Montenegro</h2>
-            </a>
-            <img src="imgs/azul1.jpg" class="result-img" alt="hotel-image">
-          </div>
-        </div>
-
-        <div class="results-card mt-3">
-          <div class="bg-img">
-            <img src="imgs/hotel1.svg" class="bg-svg" alt="hotel-logo">
-          </div>
-          <div class="results-absolute">
-            <a href="page3.html" class="result-link">
-              <h2 class="results-h"> Azul Beach Resort Montenegro</h2>
-            </a>
-            <img src="imgs/azul2.jpg" class="result-img" alt="hotel-image">
-          </div>
-        </div>
-
-        <div class="results-card mt-3">
-          <div class="bg-img">
-            <img src="imgs/hotel1.svg" class="bg-svg" alt="hotel-logo">
-          </div>
-          <div class="results-absolute">
-            <a href="page3.html" class="result-link">
-              <h2 class="results-h"> Azul Beach Resort Montenegro</h2>
-            </a>
-            <img src="imgs/azul3.jpg" class="result-img" alt="hotel-image">
-          </div>
-        </div>
-    </article>
+    <p>Paragraph.</p>
+    <a href="link">This is a link</a>
 
   </main>
 
   <footer>
 
-      <div class="footer-circle">
-      </div>
+    <div class="footer-circle">
+    </div>
   </footer>
 </body>
 
