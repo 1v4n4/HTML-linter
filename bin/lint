@@ -9,9 +9,27 @@ include Linter
 path = ARGV[0]
 file_validation = FileCheck.new(path)
 
-puts file_validation.error_msg if file_validation.invalid?
-
-puts file_validation.empty_msg if file_validation.empty?
+file_validation.to_exit?
 
 new_check = Check.new(path)
+
+
+new_check.trailing_spaces
+p new_check.trailing
+
+new_check.indentation_two
+
+p new_check.indentation
+
+new_check.indentation_first
+
+p new_check.indentation
+
+new_check.indentation_last
+
+p new_check.indentation
+
+new_check.indentation_vertical
+
+p new_check.indentation
 

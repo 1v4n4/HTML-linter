@@ -6,7 +6,7 @@ module Linter
 
     attr_reader :checking
 
-    def initialize(path)
+    def initialize(path=nil)
       @checking = path
     end
 
@@ -24,6 +24,16 @@ module Linter
 
     def empty_msg
       'There is no content in given file. Nothing to lint!'
+    end
+
+    def to_exit?
+      if invalid?
+        puts error_msg
+        exit
+      elsif empty?
+        puts empty_msg
+        exit
+      end
     end
   end
 end

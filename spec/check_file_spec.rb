@@ -5,9 +5,9 @@ include Linter
 
 describe FileCheck do
 
-let(:new_file) {FileCheck.new('../bin/test')}
-let(:empty_file) {FileCheck.new('../bin/empty')}
-let(:no_file) {FileCheck.new('../bin/no_file')}
+let(:new_file) {FileCheck.new('../test_files/test')}
+let(:empty_file) {FileCheck.new('../test_files/empty')}
+let(:no_file) {FileCheck.new('../test_files/no_file')}
 
   describe '#invalid?' do
     it 'checks if file exists' do
@@ -40,5 +40,17 @@ let(:no_file) {FileCheck.new('../bin/no_file')}
       expect(empty_file.empty_msg).to eql('There is no content in given file. Nothing to lint!')
     end
   end
+
+  describe '#to_exit?' do
+    it 'if file non existing, outputs message and exits' do
+      expect(no_file.to_exit?).to output('Object can not be found. Enter a name of a valid file').to_stderr
+    end
+
+    it 'if file empty, outputs message and exits' do
+      expect(empty_file.to_exit?).to output('Object can not be found. Enter a name of a valid file').to_stderr
+    end
+
+  end
+
 end
 
