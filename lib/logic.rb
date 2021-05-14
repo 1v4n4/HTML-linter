@@ -63,6 +63,27 @@ module Linter
       end      
       a.each_with_index {|x,indx| @indentation[:vertical].push(indx+2) if ![0,2,-2,'x'].include?(x) }          
     end
+    
+    def open_braces
+      count = 0
+      if (@lines.flatten.join =~/[<]/) > (@lines.flatten.join =~/[>]/) 
+        @unclosed.push(1)     
+      else
+        arr = @lines.map {|x| x.scan(/>*<*/).join} 
+        i = 0
+        while i < (arr.size - 1) do
+          a = arr[i].split(//)
+          a.each do |x| 
+            x == ">" ? count+=1 : count -=1
+            if count == 2 || count == -2
+              @unclosed.push(i+1) 
+              return
+            end
+          end
+        i+=1
+        end   
+      end
+    end
   
 
   end

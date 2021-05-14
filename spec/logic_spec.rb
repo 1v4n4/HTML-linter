@@ -83,4 +83,6 @@ describe Linter do
       expect(correct_file.indentation[:vertical]).to be_empty
     end
   end
+  
+  
 end
