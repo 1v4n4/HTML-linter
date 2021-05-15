@@ -6,8 +6,7 @@ include Linter
 describe Linter do
   let(:new_file) {Check.new('../test_files/test')}
   let(:correct_file) {Check.new('../test_files/test_correct')}
-  let(:fl_file) {Check.new('../test_files/first_last_identation')}
-  
+    
   describe '#initialize' do
     it 'takes an argument and initializes new class object' do
       expect(new_file.file).to eq ('../test_files/test')
@@ -32,6 +31,18 @@ describe Linter do
     end
   end
   
+  describe '#empty_line?' do
+    it 'checks if last line is empty' do
+      new_file.empty_line?  
+      expect(new_file.last_line).to be false          
+    end
+    
+    it 'returns true if last line is empty' do
+      correct_file.empty_line?  
+      expect(correct_file.last_line).to be false          
+    end
+  end
+  
   describe '#indentation_two' do
     it 'updates identation variable with the number of line with wrong identation' do
       new_file.indentation_two
@@ -39,15 +50,15 @@ describe Linter do
     end
     
     it 'updates identation variable with the number of line with wrong identation' do
-      new_file.indentation_two
+      correct_file.indentation_two
       expect(correct_file.indentation[:by_two]).to be_empty
     end
   end
   
   describe '#indentation_first' do
     it 'updates identation variable if identation of the first line is different than zero' do
-      fl_file.indentation_first
-      expect(fl_file.indentation[:zero]).to eql(['first'])
+      new_file.indentation_first
+      expect(new_file.indentation[:zero][0]).to eql('first')
     end
   end
   
@@ -59,9 +70,9 @@ describe Linter do
   end
   
   describe '#indentation_last' do
-    it 'updates identation variable if identation of the first line is different than zero' do
-      fl_file.indentation_last
-      expect(fl_file.indentation[:zero]).to eql(['last'])
+    it 'updates identation variable if identation of the last not empty line is different than zero' do
+      new_file.indentation_last
+      expect(new_file.indentation[:zero][1]).to eql('last')
     end
   end
   
@@ -79,7 +90,7 @@ describe Linter do
     end
     
     it 'checks if the indentation of the line is same or different by two as previous/last' do
-      new_file.indentation_vertical
+      correct_file.indentation_vertical
       expect(correct_file.indentation[:vertical]).to be_empty
     end
   end
@@ -95,4 +106,13 @@ describe Linter do
       expect(correct_file.unclosed).to eql([])
     end 
   end
+    
+  describe '#empty_line?' do     
+    it 'checks if the last line of html file is empty' do
+      new_file.empty_line?
+      expect(new_file.last_line).to be false                 
+    end
+  end
+   
+    
 end

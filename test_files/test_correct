@@ -1,12 +1,12 @@
 <html lang="en">
+  <body>
+  <head>
+    <meta charset="UTF-8">
+      <title>Wrong identation and trailing whites</title>
+    <link rel="stylesheet" href="css/reset.css">
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-    <title>Wrong identation and trailing whites</title>
-  <link rel="stylesheet" href="css/reset.css">
-</head>
 
-<body>
   <header>
     <div>
       <img src="imgs/hotel.svg" alt="" class="empty_alt">
@@ -25,7 +25,7 @@
     <div class="footer-circle">
     </div>
   </footer>
-</body>
+  </body>
 
 </html>
 

@@ -13,34 +13,6 @@ file_validation.to_exit?
 
 new_check = Check.new(path)
 
-p new_check.lines.size
 
-p new_check.lines
-
-new_check.empty_line?
-
-p new_check.last_line
-
-
-#new_check.trailing_spaces
-#p new_check.trailing
-
-new_check.indentation_two
-
-p new_check.indentation
-
-new_check.indentation_first
-
-
-
-new_check.indentation_last
-
-
-
-new_check.indentation_vertical
-
-p new_check.indentation
-
-new_check.open_braces
-p new_check.unclosed
+p new_check
 
