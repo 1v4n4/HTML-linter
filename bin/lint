@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require_relative '../lib/check_file.rb'
+require_relative '../lib/file_validator.rb'
 require_relative '../lib/logic.rb'
 # rubocop: disable Style/MixinUsage
 include Linter
@@ -16,6 +16,11 @@ new_check = Check.new(path)
 p new_check.lines.size
 
 p new_check.lines
+
+new_check.empty_line?
+
+p new_check.last_line
+
 
 #new_check.trailing_spaces
 #p new_check.trailing

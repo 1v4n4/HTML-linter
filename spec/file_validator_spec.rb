@@ -1,4 +1,4 @@
-require_relative '../lib/check_file.rb'
+require_relative '../lib/file_validator.rb'
 # rubocop: disable Style/MixinUsage
 include Linter
 # rubocop: enable Style/MixinUsage

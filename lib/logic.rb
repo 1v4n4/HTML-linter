@@ -1,7 +1,7 @@
 
 module Linter
 
-  attr_reader :file, :lines, :trailing, :indentation, :unclosed
+  attr_reader :file, :lines, :trailing, :indentation, :unclosed, :last_line
   class Check
 
     def initialize (path)
@@ -10,9 +10,8 @@ module Linter
       @trailing = []
       @indentation = {:by_two => [], :zero => [], :vertical => []}
       @unclosed = []
-      @missing_tags = {:non_existing => [], :no_closing => [], :no_opening => []}
-      @empty_divs = []
-      @no_alt_text = []
+      @last_line = false
+      @no_alt_text = {:missing_alt => [], :empty_alt => []}
     end
 
     def trailing_spaces
@@ -41,7 +40,7 @@ module Linter
     
     def indentation_last
       arr = @lines.map {|x| x[/^\s*/].size }
-      indentation[:zero].push('last') if arr.last != 0
+      indentation[:zero].push('last') if arr[-2] != 0
     end
     
     def indentation_vertical  
@@ -57,8 +56,8 @@ module Linter
             loop do 
               j+=1 
               break if !arr[j].nil? or j = arr.size-1 
-            end                        
-            a.push(arr[i]-arr[j])
+            end                                    
+            a.push(arr[i]-arr[j]) if !arr[i].nil? && !arr[j].nil?
             next 
         end
       end      
@@ -70,7 +69,21 @@ module Linter
         a = arr.map {|x| x.size}
         a.each_with_index {|i, indx| unclosed.push(indx+1) if i.odd?} 
         p unclosed
-    end     
+    end   
+    
+    def empty_line?      
+      @last_line = true if lines.last == "\n"           
+    end
    
+    def alts_check
+      lines.each_with_index do |i, index|
+        if /img/.match(i) && !/alt/.match(i)
+          no_alt_text[:missing_alt].push(index+1)
+        elsif /img/.match(i) && !/alt=['"][w+]['"]/.match(i)
+          no_alt_text[:empty_alt].push(index+1)
+        end      
+      end           
+    end
+    
   end
 end
