@@ -84,5 +84,15 @@ describe Linter do
     end
   end
   
-  
+  describe '#open_braces' do
+    it 'if finds an open brace updates variable with a number of line' do
+      new_file.open_braces
+      expect(new_file.unclosed).not_to be_empty
+    end
+    
+    it 'does nothing if there is no opened braces in a file' do
+        correct_file.open_braces
+      expect(correct_file.unclosed).to eql([])
+    end 
+  end
 end

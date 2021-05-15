@@ -1,6 +1,7 @@
+
 module Linter
 
-  attr_reader :file, :lines, :trailing, :indentation
+  attr_reader :file, :lines, :trailing, :indentation, :unclosed
   class Check
 
     def initialize (path)
@@ -9,7 +10,7 @@ module Linter
       @trailing = []
       @indentation = {:by_two => [], :zero => [], :vertical => []}
       @unclosed = []
-      @missing_tags = []
+      @missing_tags = {:non_existing => [], :no_closing => [], :no_opening => []}
       @empty_divs = []
       @no_alt_text = []
     end
@@ -65,26 +66,11 @@ module Linter
     end
     
     def open_braces
-      count = 0
-      if (@lines.flatten.join =~/[<]/) > (@lines.flatten.join =~/[>]/) 
-        @unclosed.push(1)     
-      else
-        arr = @lines.map {|x| x.scan(/>*<*/).join} 
-        i = 0
-        while i < (arr.size - 1) do
-          a = arr[i].split(//)
-          a.each do |x| 
-            x == ">" ? count+=1 : count -=1
-            if count == 2 || count == -2
-              @unclosed.push(i+1) 
-              return
-            end
-          end
-        i+=1
-        end   
-      end
-    end
-  
-
+        arr = lines.map {|x| x== "\n" ? x = 0 : x.scan(/>*<*/).join} 
+        a = arr.map {|x| x.size}
+        a.each_with_index {|i, indx| unclosed.push(indx+1) if i.odd?} 
+        p unclosed
+    end     
+   
   end
 end

@@ -17,8 +17,8 @@ p new_check.lines.size
 
 p new_check.lines
 
-new_check.trailing_spaces
-p new_check.trailing
+#new_check.trailing_spaces
+#p new_check.trailing
 
 new_check.indentation_two
 
@@ -26,13 +26,16 @@ p new_check.indentation
 
 new_check.indentation_first
 
-p new_check.indentation
+
 
 new_check.indentation_last
 
-p new_check.indentation
+
 
 new_check.indentation_vertical
 
 p new_check.indentation
+
+new_check.open_braces
+p new_check.unclosed
 
