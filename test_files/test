@@ -9,7 +9,7 @@
 <body>
   <header>  
     <div>
-      <img src="imgs/hotel.svg" alt="" class="empty_alt">
+      <img src="imgs/hotel.svg"  class="missing">
     </div>
   </header>
   <main>
@@ -24,6 +24,9 @@
 
       <div class="footer-circle">
       </div>
+      <div>
+      <img src="imgs/hotel.svg" class="no_alt">
+    </div>
   </footer>
 </body>
 

@@ -9,6 +9,7 @@ include Linter
 describe Linter do
   let(:new_file) { Check.new('../test_files/test') }
   let(:correct_file) { Check.new('../test_files/test_correct') }
+  let(:one_offense) { Check.new('../test_files/test_one_offense') }
 
   describe '#initialize' do
     it 'takes an argument and initializes new class object' do
@@ -73,8 +74,8 @@ describe Linter do
 
   describe '#indentation_last' do
     it 'updates identation variable if identation of the last not empty line is different than zero' do
-      new_file.indentation_last
-      expect(new_file.indentation[:zero]).to include(2)
+      one_offense.indentation_last
+      expect(one_offense.indentation[:zero]).to include(2)
     end
   end
 
