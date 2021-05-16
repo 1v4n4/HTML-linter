@@ -1,11 +1,12 @@
 require 'colorize'
+
 include FileTest
 
 module Linter
 
   class FileCheck
 
-    attr_reader :checking, :return
+    attr_reader  :return
 
     def initialize(path=nil)
       @checking = path

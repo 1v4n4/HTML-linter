@@ -132,9 +132,7 @@ module Linter
     end
     
     def sort_report
-      @report.sort!.map! {|x| p x[1].join}
-      
-      p @report
+      @report.sort!.map! {|x| x[1].join}      
     end
     
     public

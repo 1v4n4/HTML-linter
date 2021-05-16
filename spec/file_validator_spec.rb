@@ -1,33 +1,34 @@
-require_relative '../lib/file_validator.rb'
+# frozen_string_literal: true
+
+require_relative '../lib/file_validator'
 require 'colorize'
 # rubocop: disable Style/MixinUsage
 include Linter
 # rubocop: enable Style/MixinUsage
+# rubocop: disable Metrics/BlockLength
 
 describe FileCheck do
-
-let(:new_file) {FileCheck.new('../test_files/test')}
-let(:empty_file) {FileCheck.new('../test_files/empty')}
-let(:no_file) {FileCheck.new('../test_files/no_file')}
-let(:no_argument) {FileCheck.new(nil)}
-
+  let(:new_file) { FileCheck.new('../test_files/test') }
+  let(:empty_file) { FileCheck.new('../test_files/empty') }
+  let(:no_file) { FileCheck.new('../test_files/no_file') }
+  let(:no_argument) { FileCheck.new(nil) }
 
   describe '#no_arg?' do
     it 'returns true if no argument given' do
       expect(no_argument.no_arg?).to be true
     end
-    
+
     it 'returns false if  argument given' do
       expect(new_file.no_arg?).to be false
     end
   end
-    
+
   describe '#no_arg_msg' do
     it 'returns a message that no argument is given' do
-      expect(no_argument.no_arg_msg).to eql ("\n\n No argument detected! Please, add a name of the file \n\n".red)
+      expect(no_argument.no_arg_msg).to eql("\n\n No argument detected! Please, add a name of the file \n\n".red)
     end
   end
-    
+
   describe '#invalid?' do
     it 'checks if file exists' do
       expect(new_file.invalid?).not_to be true
@@ -60,7 +61,7 @@ let(:no_argument) {FileCheck.new(nil)}
     end
   end
 
-  describe '#to_exit?' do    
+  describe '#to_exit?' do
     it 'if no argument given, updates @return with true' do
       no_argument.to_exit?
       expect(no_argument.return).to be true
@@ -74,8 +75,6 @@ let(:no_argument) {FileCheck.new(nil)}
       empty_file.to_exit?
       expect(empty_file.return).to be true
     end
-
   end
-
+  # rubocop: enable Metrics/BlockLength
 end
-
