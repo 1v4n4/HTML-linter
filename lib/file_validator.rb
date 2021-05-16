@@ -1,8 +1,8 @@
 require 'colorize'
 
-include FileTest
-
 module Linter
+  include FileTest
+
   class FileCheck
     attr_reader :return
 

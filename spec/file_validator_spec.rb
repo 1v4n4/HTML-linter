@@ -1,11 +1,8 @@
-# frozen_string_literal: true
-
 require_relative '../lib/file_validator'
 require 'colorize'
 # rubocop: disable Style/MixinUsage
 include Linter
 # rubocop: enable Style/MixinUsage
-# rubocop: disable Metrics/BlockLength
 
 describe FileCheck do
   let(:new_file) { FileCheck.new('../test_files/test') }
@@ -76,5 +73,4 @@ describe FileCheck do
       expect(empty_file.return).to be true
     end
   end
-  # rubocop: enable Metrics/BlockLength
 end

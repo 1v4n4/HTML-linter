@@ -1,10 +1,7 @@
-# frozen_string_literal: true
-
 require_relative '../lib/logic'
 # rubocop: disable Style/MixinUsage
 include Linter
 # rubocop: enable Style/MixinUsage
-# rubocop: disable Metrics/BlockLength
 
 describe Linter do
   let(:new_file) { Check.new('../test_files/test') }
@@ -42,7 +39,7 @@ describe Linter do
 
     it 'returns true if last line is empty' do
       correct_file.empty_line?
-      expect(correct_file.last_line).to be false
+      expect(correct_file.last_line).to be true
     end
   end
 
@@ -116,5 +113,4 @@ describe Linter do
       expect(new_file.last_line).to be false
     end
   end
-  # rubocop: enable Metrics/BlockLength
 end

@@ -1,37 +1,34 @@
-# frozen_string_literal: true
-
 require 'colorize'
 module Linter
-  # rubocop: disable Metrics/ClassLength
   # rubocop: disable Metrics/MethodLength
 
   # getting rid of "Missing top-level class documentation comment" warninig
   class Check
-    attr_reader :file, :lines, :trailing, :indentation, :unclosed, :last_line, :no_alt_text, :report, :errors
+    attr_reader :report, :file, :lines, :trailing, :last_line, :indentation, :unclosed
 
     def initialize(path)
       @file = path
-      @lines = IO.readlines(file)
+      @lines = IO.readlines(@file)
       @trailing = []
-      @last_line = true
+      @last_line = false
       @indentation = { by_two: [], zero: [], vertical: [] }
       @unclosed = []
       @no_alt_text = []
-      @errors = 0
       @report = []
       run_checks
-      errors_count
     end
 
+    # rubocop: disable Style/StringChars
     def trailing_spaces
       0.upto(@lines.size - 1) do |i|
         arr = @lines[i].split('')
         @trailing.push(i + 1) if arr[-2] == ' '
+        # rubocop: enable Style/StringChars
       end
     end
 
     def empty_line?
-      @last_line = false unless @lines.last.empty?
+      @last_line = true if @lines.last == "\n"
     end
 
     # rubocop: disable Metrics/AbcSize
@@ -51,12 +48,12 @@ module Linter
 
     def indentation_first
       arr = @lines.map { |x| x[/^\s*/].size }
-      indentation[:zero].push(1) if arr.first != 0
+      @indentation[:zero].push(1) if arr.first != 0
     end
 
     def indentation_last
       arr = @lines.map { |x| x[/^\s*/].size }
-      indentation[:zero].push(2) if arr[-2] != 0 && last_line
+      @indentation[:zero].push(2) if arr[-2] != 0 && @last_line
     end
 
     # rubocop: disable Metrics/CyclomaticComplexity
@@ -84,9 +81,9 @@ module Linter
     end
 
     def open_braces
-      arr = lines.map { |x| x.empty? ? x = 0 : x.scan(/>*<*/).join }
+      arr = @lines.map { |x| x.empty? ? x = 0 : x.scan(/>*<*/).join }
       a = arr.map(&:size)
-      a.each_with_index { |i, indx| unclosed.push(indx + 1) if i.odd? }
+      a.each_with_index { |i, indx| @unclosed.push(indx + 1) if i.odd? }
     end
 
     def alt_check
@@ -99,20 +96,15 @@ module Linter
 
     def run_checks
       trailing_spaces
+      empty_line?
       indentation_two
       indentation_vertical
       indentation_first
       indentation_last
       open_braces
-      empty_line?
       alt_check
-      errors_count
       output
       sort_report
-    end
-
-    def errors_count
-      @errors = @report.size
     end
 
     # rubocop: enable Lint/UselessAssignment
@@ -125,8 +117,8 @@ module Linter
       end
 
       unless @last_line
-        @report.push([lines.size,
-                      ["Line #{lines.size}: ".yellow, 'Content detected!'.red,
+        @report.push([@lines.size,
+                      ["Line #{@lines.size}: ".yellow, 'Content detected!'.red,
                        ' The last line must be empty.'.yellow]])
       end
 
@@ -142,8 +134,8 @@ module Linter
       end
 
       if @indentation[:zero].include?(2)
-        @report.push([lines.size - 1,
-                      ["Line #{lines.size}: ".yellow, 'The wrong indentation detect!'.red,
+        @report.push([@lines.size - 1,
+                      ["Line #{@lines.size}: ".yellow, 'The wrong indentation detect!'.red,
                        ' This line must have zero indentation.'.yellow]])
       end
 
@@ -176,12 +168,11 @@ module Linter
       if @report == []
         "\n\n      NO OFFENSES FOUND!\n\n".green
       elsif @report.size == 1
-        "\n\n\n      #{@errors} OFFENSE FOUND!\n\n".red
+        "\n\n\n      #{@report.size} OFFENSE FOUND!\n\n".red
       else
-        "\n\n\n      #{@errors} OFFENSES FOUND!\n\n".red
+        "\n\n\n      #{@report.size} OFFENSES FOUND!\n\n".red
       end
     end
-    # rubocop: enable Metrics/ClassLength
     # rubocop: enable Metrics/MethodLength
   end
 end
