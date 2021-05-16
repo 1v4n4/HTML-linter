@@ -44,9 +44,9 @@ Results are displayed as a sorted list of lines containing offenses, along with 
 
 ## Getting Started
 
-### To get a local copy and play game
+### To get a local copy and run linter
 
-### Prerequisites
+#### Prerequisites
 
 - Text editor
 - GitHub
