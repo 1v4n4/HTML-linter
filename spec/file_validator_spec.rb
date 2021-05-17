@@ -5,9 +5,9 @@ include Linter
 # rubocop: enable Style/MixinUsage
 
 describe FileCheck do
-  let(:new_file) { FileCheck.new('../test_files/test') }
-  let(:empty_file) { FileCheck.new('../test_files/empty') }
-  let(:no_file) { FileCheck.new('../test_files/no_file') }
+  let(:new_file) { FileCheck.new('./test_files/test') }
+  let(:empty_file) { FileCheck.new('./test_files/empty') }
+  let(:no_file) { FileCheck.new('./test_files/no_file') }
   let(:no_argument) { FileCheck.new(nil) }
 
   describe '#no_arg?' do

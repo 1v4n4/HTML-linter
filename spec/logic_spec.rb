@@ -4,17 +4,17 @@ include Linter
 # rubocop: enable Style/MixinUsage
 
 describe Linter do
-  let(:new_file) { Check.new('../test_files/test') }
-  let(:correct_file) { Check.new('../test_files/test_correct') }
-  let(:one_offense) { Check.new('../test_files/test_one_offense') }
+  let(:new_file) { Check.new('./test_files/test') }
+  let(:correct_file) { Check.new('./test_files/test_correct') }
+  let(:one_offense) { Check.new('./test_files/test_one_offense') }
 
   describe '#initialize' do
     it 'takes an argument and initializes new class object' do
-      expect(new_file.file).to eq('../test_files/test')
+      expect(new_file.file).to eq('./test_files/test')
     end
 
     it 'takes an argument and initializes new class object' do
-      temp = IO.readlines('../test_files/test')
+      temp = IO.readlines('./test_files/test')
       expect(new_file.lines).to eq(temp)
     end
   end
