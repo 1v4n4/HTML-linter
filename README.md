@@ -38,21 +38,18 @@ Results are displayed as a sorted list of lines containing offenses, along with 
 - Ruby
 - RSpec for Ruby Testing
 
-## Live Demo
-
-[Live Demo Link](https://1v4n4.github.io/HTML-linter/)
-
 ## Getting Started
 
-### To get a local copy and run linter
+### To get a local copy and run a linter
 
 #### Prerequisites
 
 - Text editor
 - GitHub
 - Git
+- Ruby
 
-#### Clone this repository on to your local PC
+#### Clone this repository onto your local PC
 
 - Click on the `Code` green button
 - By the right end of the read-only input containing the repository link click the clipboard icon to copy the link
@@ -60,17 +57,26 @@ Results are displayed as a sorted list of lines containing offenses, along with 
 - Clone the repository with the command: `git clone (copied link)`; like so: `git clone https://github.com/1v4n4/HTML-linter`
 - After the clone, type in the command `cd HTML-linter` to access the directory on the terminal
 
-#### Test the linter
+#### Installing RSPEC
 
-- After clonning the project, go to test_filest folder and run any of the files using command lint and name of the file. You can also run program on any other custom file.
+To install RSPEC run `gem install rspec` in your Terminal.
+
+#### Gem 'colorize' needed
+
+Linter is using a Ruby gem 'colorize', and it is already in HTML-linter repository.
+
+### Run the linter
+
+- After cloning the project and installation, go to test_files folder and run any of the files using the command `lint (filename)`. 
+You can also run a program on any other custom file.
 
 ### Rspec
 
-To run the tests, enter the HTML-linter directory and run rspec --init. Then run the files file_validator_spec.rb and logic_spec.rb in the spec folder using rspec command.
+To run the tests, go to the spec folder and run the files file_validator_spec.rb and logic_spec.rb using rspec command (`rspec logic_spec.rb`).
 
 ## About linters
 
-A linterr is a software that helps detect errors in the document. It is a static code analysis tool used to flag programming errors, bugs, stylistic errors, and suspicious constructs. The term originates from a Unix utility that examined C language source code. [Wikipedia](https://en.wikipedia.org/wiki/Lint_(software))
+A linter is software that helps detect errors in the document. It is a static code analysis tool used to flag programming errors, bugs, stylistic errors, and suspicious constructs. The term originates from a Unix utility that examined C language source code. [Wikipedia](https://en.wikipedia.org/wiki/Lint_(software))
 
 ## Authors
 

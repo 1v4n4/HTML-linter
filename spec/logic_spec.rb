@@ -34,12 +34,12 @@ describe Linter do
   describe '#empty_line?' do
     it 'checks if last line is empty' do
       new_file.empty_line?
-      expect(new_file.last_line).to be false
+      expect(new_file.last_line).to be true
     end
 
-    it 'returns true if last line is empty' do
-      correct_file.empty_line?
-      expect(correct_file.last_line).to be true
+    it 'returns false if last line is not empty' do
+      one_offense.empty_line?
+      expect(one_offense.last_line).to be false
     end
   end
 
@@ -71,8 +71,8 @@ describe Linter do
 
   describe '#indentation_last' do
     it 'updates identation variable if identation of the last not empty line is different than zero' do
-      one_offense.indentation_last
-      expect(one_offense.indentation[:zero]).to include(2)
+      new_file.indentation_last
+      expect(new_file.indentation[:zero]).to include(2)
     end
   end
 
@@ -110,7 +110,7 @@ describe Linter do
   describe '#empty_line?' do
     it 'checks if the last line of html file is empty' do
       new_file.empty_line?
-      expect(new_file.last_line).to be false
+      expect(new_file.last_line).to be true
     end
   end
 end
