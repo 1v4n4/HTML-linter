@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/file_validator'
+require_relative '../lib/logic'
+# rubocop: disable Style/MixinUsage
+include Linter
+# rubocop: enable Style/MixinUsage
+
+path = ARGV[0]
+
+file_validation = FileCheck.new(path)
+
+puts file_validation.to_exit?
+exit if file_validation.return
+
+new_check = Check.new(path)
+
+puts "\n\n      Analyzing...\n\n\n".green
+sleep 1
+
+puts new_check.report
+puts new_check.total

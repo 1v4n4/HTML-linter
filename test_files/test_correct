@@ -1,0 +1,31 @@
+<html lang="en">
+  <body>
+  <head>
+    <meta charset="UTF-8">
+      <title>Wrong identation and trailing whites</title>
+    <link rel="stylesheet" href="css/reset.css">
+  </head>
+
+
+  <header>
+    <div>
+      <img src="imgs/hotel.svg" alt="" class="empty_alt">
+    </div>
+  </header>
+  <main>
+    <h1>Heading</h1>
+
+    <p>Paragraph.</p>
+    <a href="link">This is a link</a>
+
+  </main>
+
+  <footer>
+
+    <div class="footer-circle">
+    </div>
+  </footer>
+  </body>
+
+</html>
+
