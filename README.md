@@ -15,10 +15,6 @@ It runs this set of tests:
 
 All possible outcomes are accounted for:
 
-- if an argument not given, the wrong document name entered or the file is empty
-
-![linter1](https://user-images.githubusercontent.com/65791349/118408015-e1312f00-b683-11eb-98aa-c57f4a18bc47.png)
-
 - If there is a lot of offenses in a file
 
 ![linter2](https://user-images.githubusercontent.com/65791349/118408009-deced500-b683-11eb-900a-1eb42b9481d1.png)
@@ -31,7 +27,13 @@ All possible outcomes are accounted for:
 
 ![linter4](https://user-images.githubusercontent.com/65791349/118408020-e55d4c80-b683-11eb-9d08-0277be4f3b33.png)
 
+- if an argument not given, the wrong document name entered or the file is empty
+
+![linter1](https://user-images.githubusercontent.com/65791349/118408015-e1312f00-b683-11eb-98aa-c57f4a18bc47.png)
+
 Results are displayed as a sorted list of lines containing offenses, along with the total count of errors.
+
+
 
 ## Built With
 
